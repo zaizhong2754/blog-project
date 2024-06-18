@@ -1,0 +1,39 @@
+server:
+  port: 7777
+
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/blog_schema?characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+      username: root
+      password: 123456
+  servlet:
+    multipart:
+      max-file-size: 2MB
+      max-request-size: 5MB
+
+mybatis-plus:
+  type-aliases-package: com.zz.pojo.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      logic-delete-field: delFlag
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+      id-type: auto
+
+custom:
+  jwt:
+    client-secret-key: abcdABCDabcdABCDabcdABCDabcdABCDabcdABCDabcdABCDabcdABCDabcdABCD
+    client-ttl: 7200000
+    client-token-name: clientToken
+    admin-secret-key: abcdABCDabcdABCDabcdABCDabcdABCDabcdABCDabcdABCDabcdABCDabcdABCD
+    admin-ttl: 7200000
+    admin-token-name: adminToken
+  minio:
+    endpoint: http://xxx:9000 # MinIO服务所在地址
+    access-key: minioadmin
+    secret-key: minioadmin

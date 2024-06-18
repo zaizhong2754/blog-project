@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zz.mapper.PermissionMapper">
+
+    <resultMap id="BaseResultMap" type="com.zz.pojo.entity.Permission">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="name" column="name" jdbcType="VARCHAR"/>
+            <result property="status" column="status" jdbcType="CHAR"/>
+            <result property="authority" column="authority" jdbcType="VARCHAR"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+            <result property="createBy" column="create_by" jdbcType="BIGINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateBy" column="update_by" jdbcType="BIGINT"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="delFlag" column="del_flag" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,status,
+        authority,remark,create_by,
+        create_time,update_by,update_time,
+        del_flag
+    </sql>
+
+    <select id="selectPermissionsByUserId" resultType="java.lang.String">
+        select distinct tp.authority
+        from  t_user_role tur
+                  left join t_role tr on tur.role_id = tr.id
+                  left join t_role_permission trp on tur.role_id = trp.role_id
+                  left join t_permission tp on trp.permission_id = tp.id
+        where user_id = #{userId} and tr.status = '0' and tp.status = '0';
+    </select>
+</mapper>

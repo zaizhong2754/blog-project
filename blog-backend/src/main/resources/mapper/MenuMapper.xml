@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zz.mapper.MenuMapper">
+
+    <resultMap id="BaseResultMap" type="com.zz.pojo.entity.Menu">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="name" column="menu_name" jdbcType="VARCHAR"/>
+            <result property="pid" column="parent_id" jdbcType="BIGINT"/>
+            <result property="order" column="order_num" jdbcType="INTEGER"/>
+            <result property="path" column="path" jdbcType="VARCHAR"/>
+            <result property="component" column="component" jdbcType="VARCHAR"/>
+            <result property="isFrame" column="is_frame" jdbcType="CHAR"/>
+            <result property="status" column="status" jdbcType="CHAR"/>
+            <result property="icon" column="icon" jdbcType="VARCHAR"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+            <result property="createBy" column="create_by" jdbcType="BIGINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateBy" column="update_by" jdbcType="BIGINT"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="delFlag" column="del_flag" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,name,pid,
+        order,path,component,
+        is_frame,status,icon,
+        remark,create_by,create_time,
+        update_by,update_time,del_flag
+    </sql>
+    <select id="selectMenusByUserId" resultType="com.zz.pojo.vo.admin.MenuVo">
+        select distinct tm.id,tm.name,tm.pid,tm.path,tm.component,tm.is_frame,tm.icon,tm.remark
+        from  t_user_role tur
+                  left join t_role tr on tur.role_id = tr.id
+                  left join t_role_menu trm on tur.role_id = trm.role_id
+                  left join t_menu tm on trm.menu_id = tm.id
+        where user_id = #{userId} and tr.status = '0' and tm.status = '0';
+    </select>
+</mapper>

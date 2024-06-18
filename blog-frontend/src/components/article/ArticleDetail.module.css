@@ -1,0 +1,7 @@
+.markdown-reset * {
+  all: revert;
+}
+
+.markdown-reset img {
+  max-width: 100%;
+}

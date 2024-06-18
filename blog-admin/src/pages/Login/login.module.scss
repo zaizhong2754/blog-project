@@ -1,0 +1,21 @@
+.login-form {
+  :global {
+    .ant-input-affix-wrapper {
+      height: 48px;
+    }
+  }
+
+  .code {
+    height: 48px;
+    :global {
+      .ant-input-wrapper .ant-input-group-addon {
+        padding: 0 !important;
+        border: none !important;
+      }
+    }
+    .validate-pic {
+      width: 150px;
+      height: 48px;
+    }
+  }
+}

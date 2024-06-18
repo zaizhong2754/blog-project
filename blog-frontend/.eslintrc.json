@@ -1,0 +1,16 @@
+{
+  "extends": ["next/core-web-vitals", "plugin:prettier/recommended"],
+  "rules": {
+    "prettier/prettier": [
+      "warn",
+      {
+        "singleQuote": true,
+        "trailingComma": "none",
+        "endOfLine": "auto",
+        "semi": false,
+        "arrowParens": "avoid",
+        "plugins": ["prettier-plugin-tailwindcss"]
+      }
+    ]
+  }
+}

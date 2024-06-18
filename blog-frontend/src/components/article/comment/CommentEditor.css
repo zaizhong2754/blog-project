@@ -1,0 +1,23 @@
+/* Placeholder */
+.tiptap p.is-editor-empty:first-child::before {
+  color: #adb5bd !important;
+  content: attr(data-placeholder) !important;
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Emoji and gif */
+.tiptap img.ProseMirror-selectednode {
+  outline: 3px solid #68cef8;
+}
+.tiptap img[title='emoji'] {
+  width: 18px;
+  height: 18px;
+  vertical-align: text-top;
+}
+.tiptap img[title='gif'] {
+  width: 17px;
+  height: 17px;
+  transform: translateY(-2px);
+}
